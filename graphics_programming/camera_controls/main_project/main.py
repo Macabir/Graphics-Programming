@@ -15,8 +15,6 @@ class Target:
     def __init__(self, position):
         self.position = position
 
-
-
 # Get the directory of the current script
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -92,9 +90,23 @@ glEnableVertexAttribArray(0)
 glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * 4, ctypes.c_void_p(3 * 4))
 glEnableVertexAttribArray(1)
 
-# Create your camera objects
-first_person_cam = FirstPersonCamera(position=glm.vec3(0.0, 0.0, 5.0), world_up=glm.vec3(0.0, 1.0, 0), yaw=-90.0, pitch=0.0)
-orbital_cam = OrbitalCamera(position=glm.vec3(0.0, 0.0, 5.0), world_up=glm.vec3(0.0, 1.0, 0.0), yaw=-90.0, pitch=0.0, target=glm.vec3(0.0, 0.0, 0.0), distance_from_target=5.0)
+# Create the camera objects and manager
+first_person_cam = FirstPersonCamera(
+    position=glm.vec3(0.0, 0.0, 5.0),
+    world_up=glm.vec3(0.0, 1.0, 0),
+    yaw=-90.0,
+    pitch=0.0
+)
+
+orbital_cam = OrbitalCamera(
+    position=glm.vec3(0.0, 0.0, 5.0),
+    world_up=glm.vec3(0.0, 1.0, 0.0),
+    yaw=-90.0,
+    pitch=0.0,
+    target=glm.vec3(0.0, 0.0, 0.0),
+    distance_from_target=5.0
+)
+
 third_person_cam = ThirdPersonCamera(
     position=glm.vec3(0.0, 0.0, 5.0),
     world_up=glm.vec3(0.0, 1.0, 0),
@@ -102,15 +114,19 @@ third_person_cam = ThirdPersonCamera(
     target=cube_target,
     distance_from_target=5.0
 )
-orthographic_cam = OrthographicCamera(0, 800, 0, 600, -1, 1)
 
+orthographic_cam = OrthographicCamera(
+    left = 0,
+    right = 800,
+    bottom = 0,
+    top = 600,
+    near = -1,
+    far = 1
+)
 
-
-# Create the camera manager
-camera_manager = CameraManager(cameras=[first_person_cam, orbital_cam, third_person_cam, orthographic_cam])
-
-#List of Cameras
-cameras = [first_person_cam, orbital_cam, third_person_cam, orthographic_cam]
+camera_manager = CameraManager(
+    cameras = [first_person_cam, orbital_cam, third_person_cam, orthographic_cam]
+)
 
 active_camera = 0
 
@@ -137,13 +153,13 @@ while running:
     delta_time = current_frame - last_frame
     last_frame = current_frame
 
-    # 1. Check if the cube has reached its boundary
+    # Check if the cube has reached its boundary
     if cube_target.position.x > max_x_position:
         move_direction = -move_direction
     elif cube_target.position.x < -max_x_position:
         move_direction = -move_direction
 
-    # 3. Update the cube's position using the direction and speed
+    # Update the cube's position using the direction and speed
     cube_target.position += move_direction * cube_speed * delta_time
 
     active_camera = camera_manager.get_active_camera()
@@ -184,10 +200,8 @@ while running:
     fov = 45.0 # Default FOV
     aspect_ratio = 800 / 600
 
-    if isinstance(active_camera, OrbitalCamera):
-        # Orbital camera doesn't use FOV for zoom, so we can use a fixed FOV
-        fov = 45.0
-    elif isinstance(active_camera, OrthographicCamera):
+    if  not isinstance(active_camera, FirstPersonCamera):
+        # Fixes the field of vision
         fov = 45.0
     else:
         # First-person camera uses FOV for "zoom"
