@@ -1,1 +1,0 @@
-This concludes my study of HTML. These are some fundamental implements, and there are more advanced features available. That said, I'm assuming the rest of it is a cakewalk at this point, and may easily be referenced from documentation.
