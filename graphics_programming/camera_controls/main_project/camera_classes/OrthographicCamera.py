@@ -1,5 +1,4 @@
 import glm
-import pygame
 
 class OrthographicCamera():
     def __init__(self, left, right, bottom, top, near, far):
