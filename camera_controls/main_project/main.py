@@ -137,13 +137,13 @@ while running:
     delta_time = current_frame - last_frame
     last_frame = current_frame
 
-    # 1. Check if the cube has reached its boundary
+    # Check if the cube has reached its boundary
     if cube_target.position.x > max_x_position:
         move_direction = -move_direction
     elif cube_target.position.x < -max_x_position:
         move_direction = -move_direction
 
-    # 3. Update the cube's position using the direction and speed
+    # Update the cube's position using the direction and speed
     cube_target.position += move_direction * cube_speed * delta_time
 
     active_camera = camera_manager.get_active_camera()
