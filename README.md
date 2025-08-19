@@ -1,5 +1,6 @@
 ﻿# Graphics-Programming
 
-I have put most of my effort into understanding cameras so far, or whatever more than that is in that folder.
+I have put most of my effort into understanding cameras so far.
 Having a few rendered 3d objects shy of a blank slate of a scene was best for this, I believe.
+
 
