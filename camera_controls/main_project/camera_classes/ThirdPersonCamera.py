@@ -3,7 +3,7 @@ import math
 from .BaseCamera import BaseCamera
 
 class ThirdPersonCamera(BaseCamera):
-    def __init__(self, position, world_up, yaw, pitch, target, distance_from_target):
+    def __init__(self, position=glm.vec3(0.0, 0.0, 5.0), world_up=glm.vec3(0.0, 1.0, 0), yaw=-90.0, pitch=0.0, target=0,distance_from_target=5.0):
         super().__init__(position, world_up, yaw, pitch)
         self.target = target
         self.distance_from_target = distance_from_target

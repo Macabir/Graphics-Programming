@@ -91,38 +91,13 @@ glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * 4, ctypes.c_void_p(3 * 4))
 glEnableVertexAttribArray(1)
 
 # Create the camera objects and manager
-first_person_cam = FirstPersonCamera(
-    position=glm.vec3(0.0, 0.0, 5.0),
-    world_up=glm.vec3(0.0, 1.0, 0),
-    yaw=-90.0,
-    pitch=0.0
-)
+first_person_cam = FirstPersonCamera()
 
-orbital_cam = OrbitalCamera(
-    position=glm.vec3(0.0, 0.0, 5.0),
-    world_up=glm.vec3(0.0, 1.0, 0.0),
-    yaw=-90.0,
-    pitch=0.0,
-    target=glm.vec3(0.0, 0.0, 0.0),
-    distance_from_target=5.0
-)
+orbital_cam = OrbitalCamera()
 
-third_person_cam = ThirdPersonCamera(
-    position=glm.vec3(0.0, 0.0, 5.0),
-    world_up=glm.vec3(0.0, 1.0, 0),
-    yaw=-90.0, pitch=0.0,
-    target=cube_target,
-    distance_from_target=5.0
-)
+third_person_cam = ThirdPersonCamera(target=cube_target)
 
-orthographic_cam = OrthographicCamera(
-    left = 0,
-    right = 800,
-    bottom = 0,
-    top = 600,
-    near = -1,
-    far = 1
-)
+orthographic_cam = OrthographicCamera()
 
 camera_manager = CameraManager(
     cameras = [first_person_cam, orbital_cam, third_person_cam, orthographic_cam]

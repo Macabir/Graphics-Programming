@@ -3,7 +3,7 @@ import math
 from .BaseCamera import BaseCamera
 
 class FirstPersonCamera(BaseCamera):
-    def __init__(self, position, world_up, yaw, pitch):
+    def __init__(self, position=glm.vec3(0.0, 0.0, 5.0), world_up=glm.vec3(0.0, 1.0, 0), yaw=-90.0, pitch=0.0):
         super().__init__(position, world_up, yaw, pitch)
         self.fov = 45.0
         self.update_camera_vectors()

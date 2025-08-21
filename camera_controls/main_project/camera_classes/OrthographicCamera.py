@@ -1,7 +1,7 @@
 import glm
 
 class OrthographicCamera():
-    def __init__(self, left, right, bottom, top, near, far):
+    def __init__(self, left = 0, right = 800, bottom = 0, top = 600, near = -1, far = 1):
         self.left = left
         self.right = right
         self.bottom = bottom
