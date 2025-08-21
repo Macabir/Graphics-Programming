@@ -10,10 +10,7 @@ from camera_classes.FirstPersonCamera import FirstPersonCamera
 from camera_classes.CameraManager import CameraManager
 from camera_classes.ThirdPersonCamera import ThirdPersonCamera
 from camera_classes.OrthographicCamera import OrthographicCamera
-
-class Target:
-    def __init__(self, position):
-        self.position = position
+from Target import Target
 
 # Get the directory of the current script
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -99,9 +96,7 @@ third_person_cam = ThirdPersonCamera(target=cube_target)
 
 orthographic_cam = OrthographicCamera()
 
-camera_manager = CameraManager(
-    cameras = [first_person_cam, orbital_cam, third_person_cam, orthographic_cam]
-)
+camera_manager = CameraManager(cameras = [first_person_cam, orbital_cam, third_person_cam, orthographic_cam])
 
 active_camera = 0
 
