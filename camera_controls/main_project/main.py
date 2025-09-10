@@ -89,15 +89,10 @@ glEnableVertexAttribArray(1)
 
 # Create the camera objects and manager
 first_person_cam = FirstPersonCamera()
-
 orbital_cam = OrbitalCamera()
-
 third_person_cam = ThirdPersonCamera(target=cube_target)
-
 orthographic_cam = OrthographicCamera()
-
 camera_manager = CameraManager(cameras = [first_person_cam, orbital_cam, third_person_cam, orthographic_cam])
-
 active_camera = 0
 
 # Main loop variables
@@ -229,3 +224,4 @@ while running:
     pygame.display.flip()
 
 pygame.quit()
+
