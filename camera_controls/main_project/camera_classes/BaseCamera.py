@@ -2,6 +2,7 @@ import glm
 
 class BaseCamera:
     def __init__(self, position, world_up, yaw, pitch):
+        # Initialization variables
         self.position = position
         self.world_up = world_up
         self.yaw = yaw
